@@ -12,4 +12,12 @@ export default defineConfig({
       },
     },
   },
+  // Configuration pour le routage côté client
+  build: {
+    rollupOptions: {
+      input: {
+        main: './index.html',
+      },
+    },
+  },
 });
