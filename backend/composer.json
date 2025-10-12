@@ -76,6 +76,7 @@
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.64",
+        "symfony/phpunit-bridge": "^7.3",
         "symfony/web-profiler-bundle": "6.4.*"
     }
 }
