@@ -4,8 +4,12 @@ import { Admin, Resource } from 'react-admin';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import { fakeDataProvider } from './fakeDataProvider';
+import { hybridDataProvider } from './apiDataProvider';
 import { Dashboard } from './components/Dashboard';
 import { ProductList, ProductCreate, ProductEdit, ProductShow } from './components/Products';
+import { PublicProducts } from './components/PublicProducts';
+import { ProductDetail } from './components/ProductDetail';
+import { AdminCatalogue } from './components/AdminCatalogue';
 import { 
   Box, 
   Container, 
@@ -16,8 +20,10 @@ import {
   Grid,
   AppBar,
   Toolbar,
-  CssBaseline
+  CssBaseline,
+  IconButton
 } from '@mui/material';
+import { AdminPanelSettings } from '@mui/icons-material';
 
 // Composant pour la page d'accueil publique
 function PublicHomepage() {
@@ -29,19 +35,27 @@ function PublicHomepage() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Mon Application
           </Typography>
-          <Button color="inherit" component={Link} to="/admin">
-            Administration
+          <Button color="inherit" component={Link} to="/catalogue">
+            Catalogue
           </Button>
+          <IconButton 
+            color="inherit" 
+            component={Link} 
+            to="/admin"
+            title="Administration"
+          >
+            <AdminPanelSettings />
+          </IconButton>
         </Toolbar>
       </AppBar>
       
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant="h2" component="h1" gutterBottom>
-            Bienvenue sur notre site
+            Bienvenue sur TechStore
           </Typography>
           <Typography variant="h5" color="text.secondary" paragraph>
-            Découvrez nos produits et services exceptionnels
+            Votre destination pour les dernières technologies et innovations
           </Typography>
         </Box>
 
@@ -50,10 +64,10 @@ function PublicHomepage() {
             <Card sx={{ height: '100%' }}>
               <CardContent>
                 <Typography variant="h5" component="h2" gutterBottom>
-                  Produits de Qualité
+                  🚀 Technologies de Pointe
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Nous proposons une gamme complète de produits technologiques de haute qualité.
+                  Découvrez notre sélection de produits Apple et accessoires technologiques premium.
                 </Typography>
               </CardContent>
             </Card>
@@ -63,10 +77,10 @@ function PublicHomepage() {
             <Card sx={{ height: '100%' }}>
               <CardContent>
                 <Typography variant="h5" component="h2" gutterBottom>
-                  Service Client
+                  🛡️ Service Premium
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Notre équipe est à votre disposition pour vous accompagner dans vos choix.
+                  Support client expert, garanties étendues et conseils personnalisés pour chaque achat.
                 </Typography>
               </CardContent>
             </Card>
@@ -76,10 +90,10 @@ function PublicHomepage() {
             <Card sx={{ height: '100%' }}>
               <CardContent>
                 <Typography variant="h5" component="h2" gutterBottom>
-                  Livraison Rapide
+                  ⚡ Livraison Express
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Recevez vos commandes rapidement avec notre service de livraison express.
+                  Livraison gratuite dès 50€, retrait en magasin et suivi en temps réel.
                 </Typography>
               </CardContent>
             </Card>
@@ -99,9 +113,10 @@ function PublicHomepage() {
           <Button 
             variant="outlined" 
             size="large"
-            onClick={() => alert('Fonctionnalité à venir!')}
+            component={Link}
+            to="/catalogue"
           >
-            Voir nos Produits
+            Voir notre Catalogue
           </Button>
         </Box>
       </Container>
@@ -113,7 +128,7 @@ function PublicHomepage() {
 function AdminInterface() {
   return (
     <Admin 
-      dataProvider={fakeDataProvider}
+      dataProvider={hybridDataProvider}
       dashboard={Dashboard}
       title="Gestion des Produits"
     >
@@ -137,6 +152,10 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<PublicHomepage />} />
+            <Route path="/catalogue" element={<PublicProducts />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/admin" element={<AdminInterface />} />
+            <Route path="/admin/catalogue" element={<AdminCatalogue />} />
             <Route path="/admin/*" element={<AdminInterface />} />
           </Routes>
         </Router>

@@ -11,63 +11,71 @@ interface DataProvider {
   deleteMany: (resource: string, params: any) => Promise<{ data: any[] }>;
 }
 
-// Données de démonstration
+// Données de démonstration avec images
 const fakeProducts = [
   {
     id: 1,
     name: 'iPhone 15 Pro',
     description: 'Le dernier smartphone Apple avec puce A17 Pro et système de caméra avancé',
     price: '1199.00',
-    stock: 25
+    stock: 25,
+    image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop'
   },
   {
     id: 2,
     name: 'MacBook Air M3',
     description: 'Ordinateur portable ultra-fin avec puce M3 pour une performance exceptionnelle',
     price: '1299.00',
-    stock: 15
+    stock: 15,
+    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop'
   },
   {
     id: 3,
     name: 'AirPods Pro',
     description: 'Écouteurs sans fil avec réduction active du bruit et audio spatial',
     price: '279.00',
-    stock: 50
+    stock: 50,
+    image: 'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=300&fit=crop'
   },
   {
     id: 4,
     name: 'iPad Pro 12.9"',
     description: 'Tablette professionnelle avec écran Liquid Retina XDR et puce M2',
     price: '1099.00',
-    stock: 8
+    stock: 8,
+    image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=300&fit=crop'
   },
   {
     id: 5,
     name: 'Apple Watch Series 9',
     description: 'Montre connectée avec capteurs de santé avancés et GPS',
     price: '429.00',
-    stock: 30
+    stock: 30,
+    image: 'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400&h=300&fit=crop'
   },
   {
     id: 6,
     name: 'Magic Keyboard',
     description: 'Clavier sans fil avec trackpad intégré pour iPad',
     price: '349.00',
-    stock: 12
+    stock: 12,
+    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=300&fit=crop'
   },
   {
     id: 7,
     name: 'Studio Display',
     description: 'Écran 27" 5K avec caméra Center Stage et système audio',
     price: '1599.00',
-    stock: 5
+    stock: 5,
+    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=300&fit=crop'
   },
   {
     id: 8,
     name: 'Magic Mouse',
     description: 'Souris sans fil rechargeable avec surface Multi-Touch',
     price: '99.00',
-    stock: 40
+    stock: 40,
+    image: 'https://images.unsplash.com/photo-1527864550417-7fdaf44c795f?w=400&h=300&fit=crop'
   }
 ];
 

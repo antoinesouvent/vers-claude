@@ -1,5 +1,7 @@
-import { Card, CardContent, Typography, Grid, Box } from '@mui/material';
+import { Card, CardContent, Typography, Grid, Box, Button } from '@mui/material';
 import { useGetList } from 'react-admin';
+import { Link } from 'react-router-dom';
+import { Add, List, Visibility } from '@mui/icons-material';
 
 export const Dashboard = () => {
   const { data: products, isLoading } = useGetList('products');
@@ -74,6 +76,82 @@ export const Dashboard = () => {
         <Card>
           <CardContent>
             <Typography variant="h5" gutterBottom>
+              Actions rapides
+            </Typography>
+            <Typography variant="body1" paragraph>
+              Accédez rapidement aux fonctionnalités principales de gestion des produits.
+            </Typography>
+            
+            <Grid container spacing={2} sx={{ mt: 2 }}>
+              <Grid item xs={12} sm={6} md={2.4}>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  component={Link}
+                  to="/admin/products"
+                  startIcon={<List />}
+                  sx={{ height: '60px' }}
+                >
+                  Voir tous les produits
+                </Button>
+              </Grid>
+              
+              <Grid item xs={12} sm={6} md={2.4}>
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  component={Link}
+                  to="/admin/products/create"
+                  startIcon={<Add />}
+                  sx={{ height: '60px' }}
+                >
+                  Ajouter un produit
+                </Button>
+              </Grid>
+              
+              <Grid item xs={12} sm={6} md={2.4}>
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  component={Link}
+                  to="/admin/catalogue"
+                  startIcon={<Visibility />}
+                  sx={{ height: '60px' }}
+                >
+                  Voir le catalogue
+                </Button>
+              </Grid>
+              
+              <Grid item xs={12} sm={6} md={2.4}>
+                <Button
+                  variant="text"
+                  fullWidth
+                  onClick={() => window.location.href = '/'}
+                  sx={{ height: '60px' }}
+                >
+                  Retour au site public
+                </Button>
+              </Grid>
+              
+              <Grid item xs={12} sm={6} md={2.4}>
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  onClick={() => window.location.href = '/catalogue'}
+                  sx={{ height: '60px' }}
+                >
+                  Voir le site public
+                </Button>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Box>
+
+      <Box sx={{ mt: 4 }}>
+        <Card>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>
               Bienvenue dans votre interface d'administration
             </Typography>
             <Typography variant="body1" paragraph>
@@ -81,7 +159,7 @@ export const Dashboard = () => {
               Vous pouvez consulter, ajouter, modifier et supprimer des produits selon vos besoins.
             </Typography>
             <Typography variant="body2" color="textSecondary">
-              Utilisez le menu de navigation pour accéder aux différentes fonctionnalités.
+              Utilisez le menu de navigation ou les boutons ci-dessus pour accéder aux différentes fonctionnalités.
             </Typography>
           </CardContent>
         </Card>
