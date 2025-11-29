@@ -1,0 +1,12 @@
+{% extends 'charly/base.html.twig' %}
+
+{% block title %}Accueil - Thème {{ current_theme }}{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur notre site</h1>
+    <p>Vous utilisez le thème : <strong>{{ current_theme }}</strong></p>
+    
+    <a href="{{ path('public_products') }}" class="btn">
+        Découvrir nos produits
+    </a>
+{% endblock %}

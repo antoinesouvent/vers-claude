@@ -1,0 +1,37 @@
+{# templates/charly/public/products.html.twig #}
+{% extends 'charly/base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>{{ title }}</h1>
+    
+
+    <p>Nombre total de produits : {{ products|length }}</p>
+    <div class="products-grid">
+        {% for product in products %}
+            <div class="product-card">
+                {% if product.image %}
+                    {# <img src="{{ asset('uploads/products/' ~ product.image) }}" alt="{{ product.name }}"> #}
+                     <img src="{{product.image }}" alt="{{ product.name }}">
+                {% endif %}
+                
+
+
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <p class="price">{{ product.price }} €</p>
+                
+                {% if product is not empty %}
+                    <span class="badge available">Disponible</span>
+                {% else %}
+                    <span class="badge unavailable">Indisponible</span>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>Aucun produit disponible pour le moment.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

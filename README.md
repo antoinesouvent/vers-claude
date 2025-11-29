@@ -10,7 +10,7 @@
 
 Voir INSTALL.md
 
-## lancement du projet
+## lancement du projaaet
 
 \_\_via termminal
 

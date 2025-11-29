@@ -7,7 +7,6 @@ use App\Repository\ProductRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-// C'EST CETTE LIGNE QUI MANQUE ET QUI DOIT ÊTRE AJOUTÉE :
 #[ApiResource]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -32,6 +31,11 @@ class Product
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $iframe = null;
+
+    // ⚠️ VÉRIFIEZ QU'IL N'Y A PAS UNE AUTRE LIGNE "private ?string $iframe" ICI
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,7 +49,6 @@ class Product
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -57,7 +60,6 @@ class Product
     public function setDescription(string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -69,7 +71,6 @@ class Product
     public function setPrice(string $price): static
     {
         $this->price = $price;
-
         return $this;
     }
 
@@ -81,7 +82,6 @@ class Product
     public function setStock(int $stock): static
     {
         $this->stock = $stock;
-
         return $this;
     }
 
@@ -93,7 +93,17 @@ class Product
     public function setImage(?string $image): static
     {
         $this->image = $image;
+        return $this;
+    }
 
+    public function getIframe(): ?string
+    {
+        return $this->iframe;
+    }
+
+    public function setIframe(?string $iframe): static
+    {
+        $this->iframe = $iframe;
         return $this;
     }
 }
