@@ -1,61 +1,120 @@
-import simpleRestProvider from 'ra-data-simple-rest';
+import { hydraDataProvider } from "@api-platform/admin";
+import { fakeDataProvider } from "./fakeDataProvider";
 
-// Configuration du dataProvider pour l'API Symfony
-const apiUrl = 'http://localhost:8000/api';
+const apiUrl = "https://localhost:8000/api";
 
-export const dataProvider = simpleRestProvider(apiUrl);
+// DataProvider API Platform
+const apiPlatformProvider = hydraDataProvider({
+  entrypoint: apiUrl,
+});
 
-// DataProvider hybride qui utilise l'API quand elle est disponible, sinon le fake
+// DataProvider hybride avec fallback
 export const hybridDataProvider = {
-  ...dataProvider,
-  
-  // Override pour gérer les cas où l'API n'est pas disponible
   getList: async (resource: string, params: any) => {
     try {
-      return await dataProvider.getList(resource, params);
+      return await apiPlatformProvider.getList(resource, params);
     } catch (error) {
-      console.warn('API non disponible, utilisation des données factices:', error);
-      // Fallback vers les données factices
+      console.warn(
+        "API non disponible, utilisation des données factices:",
+        error
+      );
       return await fakeDataProvider.getList(resource, params);
     }
   },
 
   getOne: async (resource: string, params: any) => {
     try {
-      return await dataProvider.getOne(resource, params);
+      return await apiPlatformProvider.getOne(resource, params);
     } catch (error) {
-      console.warn('API non disponible, utilisation des données factices:', error);
+      console.warn(
+        "API non disponible, utilisation des données factices:",
+        error
+      );
       return await fakeDataProvider.getOne(resource, params);
     }
   },
 
   create: async (resource: string, params: any) => {
     try {
-      return await dataProvider.create(resource, params);
+      return await apiPlatformProvider.create(resource, params);
     } catch (error) {
-      console.warn('API non disponible, utilisation des données factices:', error);
+      console.warn(
+        "API non disponible, utilisation des données factices:",
+        error
+      );
       return await fakeDataProvider.create(resource, params);
     }
   },
 
   update: async (resource: string, params: any) => {
     try {
-      return await dataProvider.update(resource, params);
+      return await apiPlatformProvider.update(resource, params);
     } catch (error) {
-      console.warn('API non disponible, utilisation des données factices:', error);
+      console.warn(
+        "API non disponible, utilisation des données factices:",
+        error
+      );
       return await fakeDataProvider.update(resource, params);
+    }
+  },
+
+  updateMany: async (resource: string, params: any) => {
+    try {
+      return await apiPlatformProvider.updateMany(resource, params);
+    } catch (error) {
+      console.warn(
+        "API non disponible, utilisation des données factices:",
+        error
+      );
+      return await fakeDataProvider.updateMany(resource, params);
     }
   },
 
   delete: async (resource: string, params: any) => {
     try {
-      return await dataProvider.delete(resource, params);
+      return await apiPlatformProvider.delete(resource, params);
     } catch (error) {
-      console.warn('API non disponible, utilisation des données factices:', error);
+      console.warn(
+        "API non disponible, utilisation des données factices:",
+        error
+      );
       return await fakeDataProvider.delete(resource, params);
     }
-  }
-};
+  },
 
-// Import du fakeDataProvider pour le fallback
-import { fakeDataProvider } from './fakeDataProvider';
+  deleteMany: async (resource: string, params: any) => {
+    try {
+      return await apiPlatformProvider.deleteMany(resource, params);
+    } catch (error) {
+      console.warn(
+        "API non disponible, utilisation des données factices:",
+        error
+      );
+      return await fakeDataProvider.deleteMany(resource, params);
+    }
+  },
+
+  getMany: async (resource: string, params: any) => {
+    try {
+      return await apiPlatformProvider.getMany(resource, params);
+    } catch (error) {
+      console.warn(
+        "API non disponible, utilisation des données factices:",
+        error
+      );
+      return await fakeDataProvider.getMany(resource, params);
+    }
+  },
+
+  getManyReference: async (resource: string, params: any) => {
+    try {
+      return await apiPlatformProvider.getManyReference(resource, params);
+    } catch (error) {
+      console.warn(
+        "API non disponible, utilisation des données factices:",
+        error
+      );
+      return await fakeDataProvider.getManyReference(resource, params);
+    }
+  },
+};
